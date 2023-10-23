@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Producto>
+@{
+    ViewData["Title"] = "Lista de productos";
+}
+<h1>@ViewData["Title"]</h1>
+
+<button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Create", "Producto")'">Nuevo Producto</button>
+
+<p>En esta página se muestran los productos.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">IdProducto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.idProducto</td>
+                <td>@item.nombre</td>
+                <td>@item.descripcion</td>
+                <td>@item.cantidad</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-action="Delete" asp-route-IdProducto="@item.idProducto" class="btn btn-danger">Eliminar</a>
+                        <a asp-action="Edit" asp-route-IdProducto="@item.idProducto" class="btn btn-warning">Editar</a>
+                        <a asp-action="Details" asp-route-IdProducto="@item.idProducto" class="btn btn-success">Ver</a>
+                    </div>
+                </td>
+            </tr>
+        }
+          
+    </tbody>
+</table>

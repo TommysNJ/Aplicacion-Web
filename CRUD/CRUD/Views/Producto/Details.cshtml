@@ -1,0 +1,26 @@
+﻿@model Producto
+@{
+    ViewData["Title"] = "Ver producto";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>En esta página se visualiza el producto.</p>
+
+<form method="post">
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input asp-for="nombre" class="form-control" disabled>
+    </div>
+    <div class="mb-3">
+        <label>Descripcion</label>
+        <input asp-for="descripcion" class="form-control" disabled>
+    </div>
+    <div class="mb-3">
+        <label>Cantidad</label>
+        <input asp-for="cantidad" class="form-control" disabled>
+    </div>
+    <div>
+        <button asp-action="Index" class="btn btn-outline-primary">Regresar</button>
+    </div>
+</form>
+

@@ -23,8 +23,8 @@ namespace CRUD.Controllers
         {
             using (var httpClient = _httpClientFactory.CreateHttpClient())
             {
-                var response = await httpClient.GetAsync("api/Producto");//verbo get porque retorna todo
-                // Procesa la respuesta correcta
+                var response = await httpClient.GetAsync("api/Producto");
+               
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
@@ -47,12 +47,12 @@ namespace CRUD.Controllers
         {
             using (var httpClient = _httpClientFactory.CreateHttpClient())
             {
-                var response = await httpClient.GetAsync("api/Producto/" + idProducto);//se usa el verbo get porque la solicitus es tipo get
-                // Procesa la respuesta correcta
+                var response = await httpClient.GetAsync("api/Producto/" + idProducto);
+                
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
-                    // Imprime el JSON en la consola
+                    
                     Console.WriteLine(data);
                     var productoEcontrado = JsonSerializer.Deserialize<Producto>(data);
 
@@ -78,15 +78,15 @@ namespace CRUD.Controllers
         {
             using (var httpClient = _httpClientFactory.CreateHttpClient())
             {
-                // Serializar el objeto Producto a formato JSON
+                
                 var jsonProducto = JsonSerializer.Serialize(producto);
 
-                // Crear el contenido de la solicitud con el JSON
+                
                 var content = new StringContent(jsonProducto, Encoding.UTF8, "application/json");
 
-                // Realiza la solicitud POST
-                var response = await httpClient.PostAsync("api/Producto", content);//usa el verbo post porque la solicitud es post
-                // Procesa la respuesta correcta
+                
+                var response = await httpClient.PostAsync("api/Producto", content);
+                
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
@@ -117,15 +117,15 @@ namespace CRUD.Controllers
         {
             using (var httpClient = _httpClientFactory.CreateHttpClient())
             {
-                // Serializar el objeto Producto a formato JSON
+                
                 var jsonProducto = JsonSerializer.Serialize(producto);
 
-                // Crear el contenido de la solicitud con el JSON
+                
                 var content = new StringContent(jsonProducto, Encoding.UTF8, "application/json");
 
-                // Realiza la solicitud POST
-                var response = await httpClient.PutAsync("api/Producto/" + producto.idProducto, content);//usa el verbo put porque la solicitud es post
-                // Procesa la respuesta correcta
+                
+                var response = await httpClient.PutAsync("api/Producto/" + producto.idProducto, content);
+                
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
@@ -147,12 +147,12 @@ namespace CRUD.Controllers
         {
             using (var httpClient = _httpClientFactory.CreateHttpClient())
             {
-                var response = await httpClient.DeleteAsync($"api/Producto/" + idProducto);//Se usa el verbo delete para saber que se hace un request de ese tipo
+                var response = await httpClient.DeleteAsync($"api/Producto/" + idProducto);
 
-                // Procesa la respuesta correcta
+               
                 if (response.IsSuccessStatusCode)
                 {
-                    // Imprime el JSON en la consola
+                   
                     Console.WriteLine(response);
                     return RedirectToAction("Index");
                 }
